@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<members>
+	<member>
+		<name>scott</name>
+		<age>28</age>
+		<addr>Boston</addr>
+	</member>
+	<member>
+		<name>adame</name>
+		<age>29</age>
+		<addr>newYork</addr>
+	</member>
+	<member>
+		<name>김한솔</name>
+		<age>28</age>
+		<addr>Ilsan</addr>
+	</member>
+</members>

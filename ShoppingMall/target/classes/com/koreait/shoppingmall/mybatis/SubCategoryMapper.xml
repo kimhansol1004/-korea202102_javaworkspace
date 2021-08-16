@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SubCategory">
+
+	<!-- fkey 를 이용한 레코드 가져오기 -->
+	<select id="selectAllById" parameterType="int" resultType="SubCategory">
+		select * from subcategory where topcategory_id=#{topcategory_id}
+	</select>
+	
+	<select id="select" parameterType="int" resultType="SubCategory">
+		select * from subcategory where subcategory_id=#{subcategory_id}
+	</select>
+	
+	<!-- 이 쿼리는 부모인 TopCateogryMapper에서 거느린 자식을 구하기 위해 호출되는 쿼리다.. -->
+	<select id="selectByTop" parameterType="int" resultType="SubCategory">
+		select * from subcategory where topcategory_id=#{topcategory_id}
+	</select>
+	
+</mapper>

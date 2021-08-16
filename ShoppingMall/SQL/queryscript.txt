@@ -1,0 +1,83 @@
+--관리자 계정 테이블 
+create table admin(
+	  admin_id  int  primary key auto_increment 
+	, host_id varchar(20)
+	, password varchar(20)  
+	, name varchar(20)
+	, email varchar(50)
+) default character set utf8;
+
+insert into admin(host_id, password, name, email) values('zino','1234','민진호', 'zino1187@naver.com');
+
+--상위 카테고리에 소속된 하위카테고리의 수 
+select top_name, count(subcategory_id) as cnt
+from topcategory t left outer join subcategory s 
+on t.topcategory_id =s.topcategory_id
+group by top_name
+order by t.topcategory_id asc;
+
+--선택한 상위 카테고리에 소속된 하위카테고리 목록
+select * from subcategory where topcategory_id =(
+	select topcategory_id from topcategory where top_name='Down'
+);
+
+--상품 테이블
+create table product(
+	product_id int primary key auto_increment 
+	, subcategory_id int 
+	, product_name varchar(30)
+	, brand varchar(25)
+	, price int default 0 
+	, info text
+	, product_img varchar(25)
+) default character set utf8;
+
+--고객센터의 게시판 
+create table board(
+	board_id int primary key auto_increment 
+	, title varchar(100)
+	, writer varchar(20)
+	, content text
+	, regdate timestamp default now()
+	, hit int default 0
+) default character set utf8;
+
+
+--회원 테이블
+create table member(
+	member_id int primary key auto_increment
+	, user_id varchar(20)
+	, pass varchar(20)
+	, name varchar(20)
+	, phone varchar(13)
+)default character set utf8;
+
+
+--장바구니 
+create table cart(
+	cart_id  int primary key auto_increment 
+	, product_id int
+	, member_id int 
+	, ea int default 0
+	, constraint fk_product_cart  foreign key (product_id) references product(product_id)
+	, constraint fk_member_cart  foreign key (member_id) references member(member_id)
+) default character set utf8;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
